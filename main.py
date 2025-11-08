@@ -1,7 +1,7 @@
 
 from datetime import datetime
 
-from core.core_functs import add_task, list_tasks
+from core.core_functs import add_task, list_tasks, del_task
 
 if __name__ == "__main__":
     
@@ -22,6 +22,10 @@ if __name__ == "__main__":
                 add_task( tasks, ID, des, status, timestamp)
             case 'list':
                 list_tasks(tasks)
+            case 'delete':
+                dl = int(input("Please enter task ID: "))
+                del_task(tasks, dl)
+            
             case _:
                 print('Unknown input')
 '''

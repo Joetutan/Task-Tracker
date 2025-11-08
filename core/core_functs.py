@@ -2,7 +2,7 @@
 
 def add_task(tasks, ID: int, des: str, status: str, timestamp: str) -> str:
 
-        tasks[ID] = { 
+        tasks[ID] =  { 
                     'ID: ' : ID,
                     'des' : des, 
                      'status': status, # type: ignore
@@ -14,10 +14,19 @@ def add_task(tasks, ID: int, des: str, status: str, timestamp: str) -> str:
 
 def list_tasks(tasks):
         if tasks:
-                for i in range(len(tasks)):
-                        print(f"{i+ 1} : {tasks[i+1]['des']}")
+                for i in tasks:
+                        print(f"{i} : {tasks[i]['des']}")
         else:
                 print('Please add tasks..')
+
+def del_task(tasks, dl):
+        if isinstance(dl, int):
+                del tasks[dl]
+        else:
+                print("Please enter a number")
+        
+
+
 
 #def update_task():
 
