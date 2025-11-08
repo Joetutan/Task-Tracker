@@ -1,7 +1,7 @@
 
 from datetime import datetime
 
-from core.core_functs import add_task
+from core.core_functs import add_task, list_tasks
 
 if __name__ == "__main__":
     
@@ -14,15 +14,16 @@ if __name__ == "__main__":
 
         match cmd:
             case 'add':
-                
                 des = input("Enter task description: ").strip()
                 timestamp = f'{datetime.now().strftime("%Y-%m-%d %H:%M:%S")}'
-                IDs.append(True)
+                IDs.append(None)
                 ID = len(IDs)
                 status = 'to-do'
                 add_task( tasks, ID, des, status, timestamp)
-                print(tasks[ID])
-
+            case 'list':
+                list_tasks(tasks)
+            case _:
+                print('Unknown input')
 '''
             case 'update':
 

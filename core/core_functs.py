@@ -1,16 +1,23 @@
 
 
-def add_task(tasks, ID: int, des, status, timestamp) -> str:
+def add_task(tasks, ID: int, des: str, status: str, timestamp: str) -> str:
 
         tasks[ID] = { 
                     'ID: ' : ID,
-                    'Description: ' : des, 
-                     'Status:': status, # type: ignore
-                     'CreatedAt:' : timestamp, # type: ignore
-                     'Updated:' : None # type: ignore
+                    'des' : des, 
+                     'status': status, # type: ignore
+                     'createdAt' : timestamp, # type: ignore
+                     'updated' : None # type: ignore
                         }
+        return print(f"Task added successfully! (ID: {ID})")
 
 
+def list_tasks(tasks):
+        if tasks:
+                for i in range(len(tasks)):
+                        print(f"{i+ 1} : {tasks[i+1]['des']}")
+        else:
+                print('Please add tasks..')
 
 #def update_task():
 
