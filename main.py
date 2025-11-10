@@ -5,26 +5,26 @@ from core.core_functs import add_task, list_tasks, del_task
 
 if __name__ == "__main__":
     
-    tasks = {}
-    IDs = []
-    
-
     while True:
-        cmd = input('Chose action (Add/Update/Delete/List): ').strip().lower()
+        cmd = input('Chose action (Add/Update/Delete/List/Exit): ').strip().lower()
 
         match cmd:
             case 'add':
                 des = input("Enter task description: ").strip()
                 timestamp = f'{datetime.now().strftime("%Y-%m-%d %H:%M:%S")}'
-                IDs.append(None)
-                ID = len(IDs)
                 status = 'to-do'
-                add_task( tasks, ID, des, status, timestamp)
+                add_task( des, status, timestamp)
+
             case 'list':
-                list_tasks(tasks)
+                list_tasks()
+
             case 'delete':
                 dl = int(input("Please enter task ID: "))
-                del_task(tasks, dl)
+                del_task(dl)
+
+            case 'exit':
+                print("Goodbye")
+                break
             
             case _:
                 print('Unknown input')
