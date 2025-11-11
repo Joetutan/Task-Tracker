@@ -9,16 +9,16 @@ if file.exists():
 else:
         tasks = {}
 
-ID = len(tasks) + 1
-
 def add_task(des: str, status: str, timestamp: str) -> str:
-
+        ID = len(tasks) + 1
+        while str(ID) in tasks:
+                ID += 1
         tasks[ID] =  { 
                     'ID: ' : ID,
                     'des' : des, 
                      'status': status, 
                      'createdAt' : timestamp,
-                     'updated' : None
+                     'updatedAt' : None
                         }
         with open(file, "w") as f:
                 json.dump(tasks, f, indent=4)
@@ -33,11 +33,28 @@ def list_tasks():
         else:
                 print('Please add tasks..')
 
-def del_task(dl):
-        if isinstance(dl, int):
-                del tasks[dl]
-        else:
-                print("Please enter a number")
+def del_task(dl: str):
+        
+        del tasks[dl]
+
+        with open(file, "w") as f:
+                        json.dump(tasks, f, indent=4)
+        return print(f"Task deleted successfully! (ID: {dl})")
+
+def update_task(task_id, des, timestamp):
+        tasks[task_id]["des"] = des
+        tasks[task_id]["updatedAt"] = timestamp
+        with open(file, "w") as f:
+                        json.dump(tasks, f, indent=4)
+        return print(f"Task updated successfully! (ID: {task_id})")
+
+def mark_task(task_id, status, timestamp):
+        tasks[task_id]["status"] = status
+        tasks[task_id]["updatedAt"] = timestamp
+        with open(file, "w") as f:
+                        json.dump(tasks, f, indent=4)
+        return print(f"Task marked as {status} successfully! (ID: {task_id})")
+        
         
 
 
